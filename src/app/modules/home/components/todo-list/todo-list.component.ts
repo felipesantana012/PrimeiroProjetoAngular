@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { TaskList } from '../../model/task-list';
 
 @Component({
@@ -6,10 +6,13 @@ import { TaskList } from '../../model/task-list';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit{
-  ngOnInit(): void {
-    
+export class TodoListComponent implements DoCheck{
+
+  ngDoCheck(){
+    this.taskList.sort( (first, last) => Number(first.checked) - Number(last.checked));
+
   }
+  
 
   public taskList: Array<TaskList>= [];
 
