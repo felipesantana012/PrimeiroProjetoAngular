@@ -12,8 +12,7 @@ export class TodoListComponent implements DoCheck{
     this.taskList.sort( (first, last) => Number(first.checked) - Number(last.checked));
 
   }
-  
-
+    
   public taskList: Array<TaskList>= [];
 
 public setEmitTaskList(event: string){
@@ -30,7 +29,16 @@ public deleteAllTaskList(){
   if(confirm){
     this.taskList=[];
   }
-  
+}
+
+public validationInput(event: string, index: number){
+
+  if(!event.length){
+    const confirm = window.confirm("Task esta vazia, deseja deletar ?");
+    if(confirm){
+      this.deleteItemTaskList(index);
+    }
+  }
 }
 
 }
