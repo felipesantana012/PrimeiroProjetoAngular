@@ -9,14 +9,10 @@
                 <img src="assets/icons/icon-trash.svg" alt="">
             </button>
         </li>
-
-       
-
-
     </ul>
 </section>
 
-<app-todo-input-app-itens></app-todo-input-app-itens>
+<app-todo-input-app-itens (emitItemTaskList)="setEmitTaskList($event)"></app-todo-input-app-itens>
 <app-todo-button-delete-all *ngIf="taskList.length" (click)="deleteAllTaskList()">
 
 </app-todo-button-delete-all>
