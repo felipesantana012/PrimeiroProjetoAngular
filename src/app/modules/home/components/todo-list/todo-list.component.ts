@@ -9,16 +9,14 @@ import { TaskList } from '../../model/task-list';
 export class TodoListComponent implements DoCheck{
 
   ngDoCheck(){
-    this.taskList.sort( (first, last) => Number(first.checked) - Number(last.checked));
-
+   this.setLocalStorete()
   }
     
-  public taskList: Array<TaskList>= [];
+public taskList: Array<TaskList>= JSON.parse( localStorage.getItem("list") || '[]');
 
 public setEmitTaskList(event: string){
   this.taskList.push({task: event, checked: false})
 }
-
 
 public deleteItemTaskList(event: number){
   this.taskList.splice(event,1);
@@ -39,6 +37,11 @@ public validationInput(event: string, index: number){
       this.deleteItemTaskList(index);
     }
   }
+}
+
+public setLocalStorete(){
+  this.taskList.sort( (first, last) => Number(first.checked) - Number(last.checked));
+  localStorage.setItem("list", JSON.stringify(this.taskList));
 }
 
 }
